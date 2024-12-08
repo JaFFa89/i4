@@ -1,24 +1,49 @@
 class Pet:
-    def __init__(self, name="Pet"):
+    def __init__(self, name, type):
         self.name = name
+        self.type = type
+        self.energy = 100
+        self.hunger = 0
+        self.happiness = 100
 
-class Shelter:
-    def __init__(self, name):
-        self.name = name
-        self.animals = []
+    def play(self):
+        if self.energy > 10:
+            self.energy -= 10
+            self.happiness += 10
+            self.hunger += 10
+            print(f"{self.name} погрався! Йому весело!")
+        else:
+            print(f"{self.name} дуже втомився, йому треба відпочити.")
 
-    def add_animal(self, pet):
-        self.animals.append(pet)
+    def eat(self):
+        if self.hunger > 0:
+            self.hunger -= 20
+            self.energy += 10
+            print(f"{self.name} поїв! Тепер він задоволений.")
+        else:
+            print(f"{self.name} зараз не голодний.")
 
-    def print_animals_names(self):
-        print(f"Animals in {self.name} shelter:")
-        for animal in self.animals:
-            print(animal.name)
+    def sleep(self):
+        self.energy += 30
+        self.hunger += 10
+        print(f"{self.name} поспав і тепер має більше енергії!")
 
-dog = Pet('Buddy')
-cat = Pet('Whiskers')
+    def status(self):
+        print(f"Ім'я: {self.name}")
+        print(f"Тип: {self.type}")
+        print(f"Енергія: {self.energy}")
+        print(f"Голод: {self.hunger}")
+        print(f"Щастя: {self.happiness}")
 
-shelter = Shelter('Happy Paws')
-shelter.add_animal(dog)
-shelter.add_animal(cat)
-shelter.print_animals_names()
+
+# Приклад як це працює:
+my_cat = Pet("Мурчик", "Кіт")
+my_dog = Pet("Барсик", "Собака")
+
+my_cat.play()
+my_cat.eat()
+my_cat.sleep()
+my_cat.status()
+
+my_dog.play()
+my_dog.status()
